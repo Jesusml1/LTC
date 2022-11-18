@@ -1,6 +1,7 @@
 const supabase = require("../../../db/supabase");
 const userLoginSchema = require("../../../schemas/userLoginSchema");
 const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
 
 exports.handler = async function (event, context) {
   try {
@@ -16,6 +17,7 @@ exports.handler = async function (event, context) {
         validatedUser.password,
         result.password
       );
+
       if (!passwordValid) {
         return {
           statusCode: 401,
@@ -25,12 +27,18 @@ exports.handler = async function (event, context) {
           }),
         };
       }
+      const token = jwt.sign(
+        { username: result.username, email: result.email },
+        process.env.TOKEN_KEY,
+        { expiresIn: "2h" }
+      );
       if (data.length > 0) {
         return {
           statusCode: 200,
           body: JSON.stringify({
             success: true,
             message: "User authenticated",
+            token,
           }),
         };
       }
