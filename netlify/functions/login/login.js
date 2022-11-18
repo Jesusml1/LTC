@@ -1,3 +1,4 @@
+require('module-alias/register');
 const supabase = require("@db/supabase");
 const userLoginSchema = require("@schemas/userLoginSchema");
 const bcrypt = require("bcryptjs");
