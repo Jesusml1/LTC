@@ -1,5 +1,4 @@
-
-
-[[edge_functions]]
-function = "hello"
-path = "/test"
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/:splat"
+  status = 200
