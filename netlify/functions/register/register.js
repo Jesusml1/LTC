@@ -1,6 +1,5 @@
-require('module-alias/register');
-const supabase = require("@db/supabase");
-const userRegisterSchema = require("@schemas/userRegisterSchema");
+const supabase = require("../../../db/supabase");
+const userRegisterSchema = require("../../../schemas/userRegisterSchema");
 const bcrypt = require("bcryptjs");
 
 exports.handler = async function (event, context) {
