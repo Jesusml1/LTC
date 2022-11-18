@@ -4,6 +4,7 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
 exports.handler = async function (event, context) {
+  console.log('running login');
   try {
     const user = JSON.parse(event.body);
     const validatedUser = await userLoginSchema.validate(user);
